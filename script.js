@@ -58,7 +58,7 @@ video.addEventListener("play", animate);
 function stopAnimate() {
 	cancelAnimationFrame(animationId);
 };
-video.addEventListener("ended", stopAnimate);
+video.addEventListener("pause", stopAnimate);
 
 progress.addEventListener("click",(event) => {
 	const dimension = progress.getBoundingClientRect();
@@ -71,6 +71,7 @@ progress.addEventListener("click",(event) => {
 
 video.addEventListener("error" , () => {
 	const errorMsg = document.createElement("div");
+	errorMsg.classList.add("player__error");
 	errorMsg.textContent = "Sorry! Video could not be loaded.";
 	player.appendChild(errorMsg);
 });

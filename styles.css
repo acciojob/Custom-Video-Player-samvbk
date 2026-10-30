@@ -27,6 +27,21 @@ body {
   overflow: hidden;
 }
 
+.player__error {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 15px 20px;
+    font-size: 16px;
+    text-align: center;
+    width: 80%;
+    z-index: 10;
+    border-radius: 5px;
+}
+
 /* This css is only applied when fullscreen is active. */
 .player:fullscreen {
   max-width: none;
@@ -98,10 +113,9 @@ body {
 }
 
 .progress__filled {
-  width: 50%;
-  background: #ffc600;
-  flex: 0;
-  flex-basis: 0%;
+    width: 0%;
+    background: #ffc600;
+    flex: 0 0 auto;
 }
 
 /* unholy css to style input type="range" */
