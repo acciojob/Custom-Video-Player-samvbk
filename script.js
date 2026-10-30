@@ -44,7 +44,7 @@ skipButtons.forEach(button =>{
 function updateProgress() {
 	if (Number.isFinite(video.duration) && video.duration>0) {
 		const percent = (video.currentTime/video.duration)*100;
-		progressBar.style.flexBasis = `${percent}%`;
+		progressBar.style.width = `${percent}%`;
 	}
 };
 
