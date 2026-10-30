@@ -57,16 +57,24 @@ video.addEventListener("play", animate);
 
 function stopAnimate() {
 	cancelAnimationFrame(animationId);
+	animationId = null;
 };
 video.addEventListener("pause", stopAnimate);
+video.addEventListener("ended", stopAnimate);
+video.addEventListener("seeked", updateProgress);
 
-progress.addEventListener("click",(event) => {
-	const dimension = progress.getBoundingClientRect();
-	console.log(dimension);
-	console.log(event.offsetX);
+// progress.addEventListener("click",(event) => {
+// 	const dimension = progress.getBoundingClientRect();
+// 	console.log(dimension);
+// 	console.log(event.offsetX);
 
-	const clickPosition = (event.offsetX/dimension.width);
-	video.currentTime = video.duration * clickPosition;
+// 	const clickPosition = (event.offsetX/dimension.width);
+// 	video.currentTime = video.duration * clickPosition;
+// });
+progress.addEventListener("click", (event) => {
+  const rect = progress.getBoundingClientRect();
+  const clickPosition = (event.clientX - rect.left) / rect.width;
+  video.currentTime = video.duration * clickPosition;
 });
 
 video.addEventListener("error" , () => {
