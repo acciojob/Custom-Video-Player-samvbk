@@ -43,7 +43,7 @@ skipButtons.forEach(button =>{
 
 function updateProgress() {
 	const percent = ((video.currentTime/video.duration)*100);
-	progressBar.style.width = `${percent}%`;
+	progressBar.style.flexBasis = `${percent}%`;
 };
 
 video.addEventListener("timeupdate",()=>{
@@ -60,5 +60,10 @@ progress.addEventListener("click",(event) => {
 });
 
 video.addEventListener("error" , () => {
-	alert("Sorry! Video could not be loaded.");
-})
+	const errorMsg = document.createElement("div");
+	errorMsg.textContent = "Sorry! Video could not be loaded.";
+	player.appendChild(errorMsg);
+});
+
+
+
