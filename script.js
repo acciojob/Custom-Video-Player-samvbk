@@ -42,13 +42,21 @@ skipButtons.forEach(button =>{
 });
 
 function updateProgress() {
-	const percent = ((video.currentTime/video.duration)*100);
+	const percent = (video.currentTime/Number.isFinite(video.duration))*100;
 	progressBar.style.flexBasis = `${percent}%`;
 };
 
-video.addEventListener("timeupdate",()=>{
+let animationId;
+function animate() {
 	updateProgress();
-});
+	animationId = requestAnimationFrame(animate);
+};
+video.addEventListener("play", animate);
+
+function stopAnimate() {
+	cancelAnimationFrame(animationId);
+};
+video.addEventListener("pause", stopAnimate);
 
 progress.addEventListener("click",(event) => {
 	const dimension = progress.getBoundingClientRect();
